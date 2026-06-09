@@ -1,13 +1,27 @@
 import type { StorybookConfig } from 'storybook-react-rsbuild';
 
 const config: StorybookConfig = {
-  "stories": [
+  stories: [
     "../src/components/**/*.mdx",
     "../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
-  "addons": [
-    "@storybook/addon-docs"
+  addons: [
+    "@storybook/addon-essentials" // 🌟 Replaced docs with essentials (which includes docs + controls)
   ],
-  "framework": "storybook-react-rsbuild"
+  framework: {
+    name: "storybook-react-rsbuild", // 🌟 Must be an object with the name parameter
+    options: {
+      strictMode: true,
+    }
+  },
+  core: {
+    builder: {
+      name: "storybook-builder-rsbuild", // 🌟 Explicitly tells Storybook to use the Rust builder layer
+      options: {
+        fsCache: true, // Enables fast Rspack filesystem caching
+      }
+    }
+  }
 };
+
 export default config;
