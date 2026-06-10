@@ -1,11 +1,22 @@
+import { Router, Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
 import './App.css';
+import { AppLayout } from './components/layout/AppLayout/AppLayout';
+import Dashboard from './pages/Dashboard';
+import PatientList from './pages/PatientList';
+import PatientDetail from './pages/PatientDetail';
 
 const App = () => {
   return (
-    <div className="content">
-      <h1>Rsbuild with React</h1>
-      <p>Start building amazing things with Rsbuild.</p>
-    </div>
+    <AppLayout>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={ <Navigate to="/dashboard" replace /> } />
+          <Route path='/dashboard' element={ <Dashboard/> } />
+          <Route path='/patients' element={ <PatientList/> } />
+          <Route path='/patients/:id' element={ <PatientDetail/> } />
+        </Routes>
+      </BrowserRouter>
+    </AppLayout>
   );
 };
 
