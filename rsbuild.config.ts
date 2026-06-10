@@ -1,6 +1,7 @@
 import { defineConfig } from '@rsbuild/core';
 import { pluginBabel } from '@rsbuild/plugin-babel';
 import { pluginReact } from '@rsbuild/plugin-react';
+import { pluginSvgr } from '@rsbuild/plugin-svgr';
 
 // Docs: https://rsbuild.rs/config/
 export default defineConfig({
@@ -13,5 +14,8 @@ export default defineConfig({
         opts.plugins?.unshift('babel-plugin-react-compiler');
       },
     }),
+    pluginSvgr({
+      svgrOptions: { exportType: 'named' }
+    })
   ],
 });
