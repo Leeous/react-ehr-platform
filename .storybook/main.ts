@@ -1,3 +1,4 @@
+import { pluginSvgr } from '@rsbuild/plugin-svgr';
 import type { StorybookConfig } from 'storybook-react-rsbuild';
 
 const config: StorybookConfig = {
@@ -5,9 +6,7 @@ const config: StorybookConfig = {
     "../src/components/**/*.mdx",
     "../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
-  addons: [
-    "@storybook/addon-essentials" // 🌟 Replaced docs with essentials (which includes docs + controls)
-  ],
+  addons: ["@storybook/addon-docs"],
   framework: {
     name: "storybook-react-rsbuild", // 🌟 Must be an object with the name parameter
     options: {
@@ -21,7 +20,12 @@ const config: StorybookConfig = {
         fsCache: true, // Enables fast Rspack filesystem caching
       }
     }
-  }
+  },
+
+  async rsbuildFinal(config) {
+    config.plugins?.push(pluginSvgr({ svgrOptions: { exportType: 'named' } }));
+    return config;
+  },
 };
 
 export default config;
