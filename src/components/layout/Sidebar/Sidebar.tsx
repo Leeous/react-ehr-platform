@@ -6,7 +6,9 @@ interface SidebarProps {
 }
 
 function Sidebar({isOpen, onCloseSidebar}: SidebarProps) {
-
+  const baseLinkStyle = "block p-2 rounded";
+  const activeLinkStyle = "bg-blue-600 text-white font-semibold cursor-default";
+  const hoverLinkStyle = "text-gray-300 hover:bg-slate-800";
 
 
   return(
@@ -34,9 +36,39 @@ function Sidebar({isOpen, onCloseSidebar}: SidebarProps) {
         </div>
 
         <nav className="space-y-2">
-          <NavLink className="block p-2 hover:bg-slate-800 rounded" to="/dashboard">Dashboard</NavLink>
-          <NavLink className="block p-2 hover:bg-slate-800 rounded" to="/patients">Patients</NavLink>
-          <NavLink className="block p-2 hover:bg-slate-800 rounded" to="/settings">Settings</NavLink>
+          <NavLink 
+            className={({ isActive }) =>
+              `${baseLinkStyle} ${
+                isActive
+                  ? activeLinkStyle
+                  : hoverLinkStyle
+              }`
+            }
+            to="/dashboard">
+              Dashboard
+          </NavLink>
+          <NavLink 
+            className={({ isActive }) =>
+              `${baseLinkStyle} ${
+                isActive
+                  ? activeLinkStyle
+                  : hoverLinkStyle
+              }`
+            }
+            to="/patients">
+              Patients
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              `${baseLinkStyle} ${
+                isActive
+                  ? activeLinkStyle
+                  : hoverLinkStyle
+              }`
+            }
+            to="/settings" >
+              Settings
+          </NavLink>
         </nav>
       </aside>
     </>
