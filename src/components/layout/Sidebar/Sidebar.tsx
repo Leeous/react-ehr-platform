@@ -1,9 +1,14 @@
+import { NavLink } from "react-router-dom";
+
 interface SidebarProps {
   isOpen: boolean;
   onCloseSidebar: () => void;
 }
 
 function Sidebar({isOpen, onCloseSidebar}: SidebarProps) {
+
+
+
   return(
     <>
       {isOpen && (
@@ -29,9 +34,9 @@ function Sidebar({isOpen, onCloseSidebar}: SidebarProps) {
         </div>
 
         <nav className="space-y-2">
-          <a href="#dashboard" className="block p-2 hover:bg-slate-800 rounded">Dashboard</a>
-          <a href="#patients" className="block p-2 hover:bg-slate-800 rounded">Patients</a>
-          <a href="#settings" className="block p-2 hover:bg-slate-800 rounded">Settings</a>
+          <NavLink className="block p-2 hover:bg-slate-800 rounded" to="/dashboard">Dashboard</NavLink>
+          <NavLink className="block p-2 hover:bg-slate-800 rounded" to="/patients">Patients</NavLink>
+          <NavLink className="block p-2 hover:bg-slate-800 rounded" to="/settings">Settings</NavLink>
         </nav>
       </aside>
     </>
