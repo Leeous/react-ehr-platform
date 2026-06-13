@@ -27,7 +27,7 @@ function Sidebar({isOpen, onCloseSidebar}: SidebarProps) {
         `}
       >
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-bold">{process.env.PUBLIC_SITE_NAME}</h2>
+          <h2 className="text-xl font-bold">{process.env.PUBLIC_SITE_NAME || "Site Title"}</h2>
           <button
             onClick={onCloseSidebar}
             className="p-2 hover:bg-slate-800 rounded md:hidden cursor-pointer"

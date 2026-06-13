@@ -13,7 +13,7 @@ type Story = StoryObj<typeof Header>;
 // Standard default state
 export const Default: Story = {
   args: {
-    title: "Header"
+    title: process.env.PUBLIC_SITE_NAME || "Site Title"
   }
 };
 

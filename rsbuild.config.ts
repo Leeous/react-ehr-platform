@@ -6,7 +6,7 @@ import { pluginSvgr } from '@rsbuild/plugin-svgr';
 // Docs: https://rsbuild.rs/config/
 export default defineConfig({
   html: {
-    title: process.env.PUBLIC_SITE_NAME || "Default title"
+    title: process.env.PUBLIC_SITE_NAME || "Site Title"
   },
   plugins: [
     pluginReact(),

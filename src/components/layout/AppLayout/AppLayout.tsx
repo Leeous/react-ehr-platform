@@ -20,7 +20,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
         onCloseSidebar={handleSidebarClose}
       />
       <div className="main-area">
-        <Header title={process.env.PUBLIC_SITE_NAME} onOpenSidebar={handleSidebarOpen} />
+        <Header title={process.env.PUBLIC_SITE_NAME || "Site Title"} onOpenSidebar={handleSidebarOpen} />
         <main className="content-container">
           {children}
         </main>
