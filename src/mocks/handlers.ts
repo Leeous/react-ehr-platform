@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw';
-import { Bundle, Patient } from 'fhir/r4';
+import { type Bundle, type Patient } from 'fhir/r4';
 import allPatientsRaw from '../data/all_patients.json';
 
 const allPatients = allPatientsRaw as Bundle[];
