@@ -21,3 +21,5 @@ storybook-static
 scripts/
 merge-patient-data.cjs
 src/data/
+# Local Netlify folder
+.netlify
