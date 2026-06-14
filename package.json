@@ -36,6 +36,7 @@
     "eslint-plugin-storybook": "^10.4.3",
     "globals": "^17.6.0",
     "msw": "^2.14.6",
+    "netlify-cli": "^26.1.0",
     "prettier": "^3.8.3",
     "storybook": "^10.4.3",
     "storybook-react-rsbuild": "^3.3.4",
