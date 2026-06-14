@@ -1,10 +1,10 @@
 import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import { AppLayout } from './components/layout/AppLayout/AppLayout';
-import Dashboard from './pages/Dashboard';
-import PatientList from './pages/PatientList';
-import PatientDetail from './pages/PatientDetail';
-import Settings from './pages/Settings';
+import Dashboard from './pages/DashboardPage';
+import PatientList from './pages/PatientListPage';
+import PatientDetail from './pages/PatientDetailPage';
+import Settings from './pages/SettingsPage';
 
 const App = () => {
   return (
