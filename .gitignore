@@ -18,3 +18,6 @@ dist/
 
 *storybook.log
 storybook-static
+scripts/
+merge-patient-data.cjs
+src/data/
