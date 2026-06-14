@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { onUnhandledRequest } from 'msw';
+// import removed: onUnhandledRequest was unused
 
 async function enableMocking() {
   if (process.env.NODE_ENV === 'development' || window.location.hostname.includes('leeous.com')) {
