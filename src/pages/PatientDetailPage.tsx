@@ -1,5 +1,5 @@
 function PatientDetail() {
-  return("WIP");
+  return("WIP | Patient Details");
 }
 
 export default PatientDetail;

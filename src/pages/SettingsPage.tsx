@@ -1,5 +1,5 @@
 function Settings() {
-  return("WIP");
+  return("WIP | Settings");
 }
 
 export default Settings;
