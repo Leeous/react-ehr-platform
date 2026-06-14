@@ -36,7 +36,8 @@ function Sidebar({isOpen, onCloseSidebar}: SidebarProps) {
         </div>
 
         <nav className="space-y-2">
-          <NavLink 
+          {/* TODO: consider turning into simple components to keep Sidebar short and sweet */}
+          <NavLink
             className={({ isActive }) =>
               `${baseLinkStyle} ${
                 isActive
@@ -44,6 +45,7 @@ function Sidebar({isOpen, onCloseSidebar}: SidebarProps) {
                   : hoverLinkStyle
               }`
             }
+            onClick={onCloseSidebar}
             to="/dashboard">
               Dashboard
           </NavLink>
@@ -55,6 +57,7 @@ function Sidebar({isOpen, onCloseSidebar}: SidebarProps) {
                   : hoverLinkStyle
               }`
             }
+            onClick={onCloseSidebar}
             to="/patients">
               Patients
           </NavLink>
@@ -66,6 +69,7 @@ function Sidebar({isOpen, onCloseSidebar}: SidebarProps) {
                   : hoverLinkStyle
               }`
             }
+            onClick={onCloseSidebar}
             to="/settings" >
               Settings
           </NavLink>
