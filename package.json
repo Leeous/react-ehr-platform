@@ -6,13 +6,14 @@
   "scripts": {
     "build": "rsbuild build",
     "build-storybook": "storybook build",
-    "dev": "rsbuild --open",
+    "dev": "concurrently \"rsbuild --open\" \"storybook dev -p 6006\"",
     "format": "prettier --write .",
     "lint": "eslint .",
     "preview": "rsbuild preview",
     "storybook": "storybook dev -p 6006"
   },
   "dependencies": {
+    "@types/fhir": "^0.0.44",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router-dom": "^7.17.0"
@@ -28,11 +29,13 @@
     "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
     "babel-plugin-react-compiler": "^1.0.0",
+    "concurrently": "^10.0.3",
     "eslint": "^10.4.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "eslint-plugin-storybook": "^10.4.3",
     "globals": "^17.6.0",
+    "msw": "^2.14.6",
     "prettier": "^3.8.3",
     "storybook": "^10.4.3",
     "storybook-react-rsbuild": "^3.3.4",
@@ -42,5 +45,10 @@
   },
   "allowScripts": {
     "esbuild@0.27.7": true
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
