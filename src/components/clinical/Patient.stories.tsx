@@ -14,9 +14,8 @@ const meta: Meta<typeof Patient> = {
     )
   ],
   argTypes: {
-    id: { control: { type: 'number' } },
-    firstName: { control: { type: 'text' } },
-    lastName: { control: { type: 'text' } },
+    id: { control: { type: 'text' } },
+    name: { control: { type: 'object' } },
     age: { control: { type: 'number' } },
     email: { control: { type: 'text' }}
   },
@@ -28,10 +27,12 @@ type Story = StoryObj<typeof Patient>;
 // Standard default state
 export const Default: Story = {
   args: {
-    id: 1,
-    firstName: "John",
-    lastName: "Doe",
-    age: 27,
+    id: "123abc",
+    name: {
+      firstName: "John",
+      lastName: "Doe",
+    },
+    dob: "1999-02-24",
     email: "example@example.com"
   },
 };
