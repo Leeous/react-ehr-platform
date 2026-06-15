@@ -22,7 +22,7 @@ function Sidebar({isOpen, onCloseSidebar}: SidebarProps) {
       <aside 
         className={`
           fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-white p-4 transform transition-transform duration-300 ease-in-out
-          md:translate-x-0 md:static md:z-0
+          md:translate-x-0 md:static md:z-0 md:sticky md:top-0 md:h-screen md:overflow-y-auto
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
       >
@@ -49,7 +49,7 @@ function Sidebar({isOpen, onCloseSidebar}: SidebarProps) {
             to="/dashboard">
               Dashboard
           </NavLink>
-          <NavLink 
+          <NavLink
             className={({ isActive }) =>
               `${baseLinkStyle} ${
                 isActive
@@ -60,6 +60,18 @@ function Sidebar({isOpen, onCloseSidebar}: SidebarProps) {
             onClick={onCloseSidebar}
             to="/patients">
               Patients
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              `${baseLinkStyle} ${
+                isActive
+                  ? activeLinkStyle
+                  : hoverLinkStyle
+              }`
+            }
+            onClick={onCloseSidebar}
+            to="/schedule">
+              Schedule
           </NavLink>
           <NavLink
             className={({ isActive }) =>
