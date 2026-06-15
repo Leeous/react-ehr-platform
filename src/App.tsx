@@ -5,6 +5,7 @@ import Dashboard from './pages/DashboardPage';
 import PatientList from './pages/PatientListPage';
 import PatientDetail from './pages/PatientDetailPage';
 import Settings from './pages/SettingsPage';
+import SchedulePage from './pages/SchedulePage';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Route path='/' element={ <Navigate to="/dashboard" replace /> } />
           <Route path='/dashboard' element={ <Dashboard/> } />
           <Route path='/patients' element={ <PatientList/> } />
+          <Route path='/schedule' element={ <SchedulePage/> } />
           <Route path='/settings' element={ <Settings/> } />
           <Route path='/patients/:id' element={ <PatientDetail/> } />
         </Routes>
