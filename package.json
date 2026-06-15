@@ -14,7 +14,11 @@
   },
   "dependencies": {
     "@types/fhir": "^0.0.44",
+    "date-fns": "^4.4.0",
     "react": "^19.2.6",
+    "react-big-calendar": "^1.20.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^19.2.6",
     "react-router-dom": "^7.17.0"
   },
@@ -27,6 +31,7 @@
     "@storybook/addon-docs": "^10.4.3",
     "@tailwindcss/postcss": "^4.3.0",
     "@types/react": "^19.2.15",
+    "@types/react-big-calendar": "^1.16.3",
     "@types/react-dom": "^19.2.3",
     "babel-plugin-react-compiler": "^1.0.0",
     "concurrently": "^10.0.3",
