@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import { Calendar, dateFnsLocalizer, type Event } from 'react-big-calendar';
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
-import format from 'date-fns/format';
-import parse from 'date-fns/parse';
-import startOfWeek from 'date-fns/startOfWeek';
-import getDay from 'date-fns/getDay';
-import enUS from 'date-fns/locale/en-US';
+import { format, parse, startOfWeek, getDay } from 'date-fns';
+import { enUS } from 'date-fns/locale';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
 
@@ -21,14 +18,45 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
-const DnDCalendar = withDragAndDrop(Calendar);
+type View = 'month' | 'week' | 'day' | 'agenda';
 
 type AppointmentEvent = Event & {
   id: string;
   patient: string;
   type: string;
   notes: string;
+  start: Date;
+  end: Date;
 };
+
+interface EventInteractionArgs {
+  event: AppointmentEvent;
+  start: Date;
+  end: Date;
+}
+
+interface DnDCalendarProps {
+  localizer: ReturnType<typeof dateFnsLocalizer>;
+  events: AppointmentEvent[];
+  startAccessor: (event: AppointmentEvent) => Date;
+  endAccessor: (event: AppointmentEvent) => Date;
+  style: React.CSSProperties;
+  views: View[];
+  view: View;
+  onView: (view: View) => void;
+  date: Date;
+  onNavigate: (date: Date) => void;
+  defaultView: View;
+  popup?: boolean;
+  resizable?: boolean;
+  onEventDrop: (args: EventInteractionArgs) => void;
+  onEventResize: (args: EventInteractionArgs) => void;
+  onSelectEvent: (event: AppointmentEvent) => void;
+  eventPropGetter?: (event: AppointmentEvent) => { className: string };
+  toolbar?: boolean;
+}
+
+const DnDCalendar = withDragAndDrop(Calendar) as React.ComponentType<DnDCalendarProps>;
 
 const sampleEvents: AppointmentEvent[] = [
   {
@@ -81,20 +109,24 @@ const sampleEvents: AppointmentEvent[] = [
 function SchedulePage() {
   const [events, setEvents] = useState<AppointmentEvent[]>(sampleEvents);
   const [selectedEvent, setSelectedEvent] = useState<AppointmentEvent | null>(null);
+  const [view, setView] = useState<View>('week');
+  const [date, setDate] = useState<Date>(new Date(2026, 5, 17));
 
   const handleEventSelect = (event: AppointmentEvent) => {
     setSelectedEvent(event);
   };
 
-  const handleEventDrop = ({ event, start, end }: { event: AppointmentEvent; start: Date; end: Date }) => {
+  const handleEventDrop = (args: EventInteractionArgs) => {
+    const { event, start, end } = args;
     setEvents((current) =>
       current.map((item) =>
-        item.id === event.id ? { ...item, start, end } : item
+        item.id === event.id ? { ...item, start, end } : item 
       )
     );
   };
 
-  const handleEventResize = ({ event, start, end }: { event: AppointmentEvent; start: Date; end: Date }) => {
+  const handleEventResize = (args: EventInteractionArgs) => {
+    const { event, start, end } = args;
     setEvents((current) =>
       current.map((item) =>
         item.id === event.id ? { ...item, start, end } : item
@@ -103,6 +135,14 @@ function SchedulePage() {
   };
 
   const closeModal = () => setSelectedEvent(null);
+
+  const handleNavigate = (newDate: Date) => {
+    setDate(newDate);
+  };
+
+  const handleViewChange = (newView: View) => {
+    setView(newView);
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 py-8 px-4">
@@ -118,10 +158,14 @@ function SchedulePage() {
           <DnDCalendar
             localizer={localizer}
             events={events}
-            startAccessor="start"
-            endAccessor="end"
+            startAccessor={(event: AppointmentEvent) => event.start}
+            endAccessor={(event: AppointmentEvent) => event.end}
             style={{ height: 'calc(100vh - 220px)', minHeight: 600 }}
             views={['month', 'week', 'day', 'agenda']}
+            view={view}
+            onView={handleViewChange}
+            date={date}
+            onNavigate={handleNavigate}
             defaultView="week"
             popup
             resizable
@@ -164,11 +208,11 @@ function SchedulePage() {
               </div>
               <div>
                 <p className="text-sm font-medium text-slate-500">Start</p>
-                <p className="mt-1 text-base font-semibold text-slate-900">{selectedEvent.start.toLocaleString()}</p>
+                <p className="mt-1 text-base font-semibold text-slate-900">{selectedEvent.start?.toLocaleString() ?? 'TBD'}</p>
               </div>
               <div>
                 <p className="text-sm font-medium text-slate-500">End</p>
-                <p className="mt-1 text-base font-semibold text-slate-900">{selectedEvent.end.toLocaleString()}</p>
+                <p className="mt-1 text-base font-semibold text-slate-900">{selectedEvent.end?.toLocaleString() ?? 'TBD'}</p>
               </div>
             </div>
 
