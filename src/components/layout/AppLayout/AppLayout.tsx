@@ -14,12 +14,12 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
   const handleSidebarClose = () => setIsSidebarOpen(false);
 
   return (
-    <div className="app-layout bg-blue-100 h-screen"> 
+    <div className="app-layout bg-blue-100 min-h-screen md:flex md:items-stretch">
       <Sidebar
         isOpen={isSidebarOpen}
         onCloseSidebar={handleSidebarClose}
       />
-      <div className="main-area">
+      <div className="main-area flex-1 min-h-screen">
         <Header title={process.env.PUBLIC_SITE_NAME || "Site Title"} onOpenSidebar={handleSidebarOpen} />
         <main className="content-container">
           {children}
