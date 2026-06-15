@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from 'storybook-react-rsbuild';
 import Patient from './Patient';
-import { MemoryRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 const meta: Meta<typeof Patient> = {
   title: 'UI elements/Patient',
@@ -8,9 +8,9 @@ const meta: Meta<typeof Patient> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <MemoryRouter>
+      <BrowserRouter>
         <Story />
-      </MemoryRouter>
+      </BrowserRouter>
     )
   ],
   argTypes: {
@@ -33,6 +33,8 @@ export const Default: Story = {
       lastName: "Doe",
     },
     dob: "1999-02-24",
-    email: "example@example.com"
+    age: 25,
+    email: "example@example.com",
+    status: "active"
   },
 };
