@@ -15,14 +15,14 @@ function Sidebar({isOpen, onCloseSidebar}: SidebarProps) {
     <>
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+          className="fixed inset-0 bg-black/40 z-40 xl:hidden"
           onClick={onCloseSidebar}
         />
       )}
       <aside 
         className={`
           fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-white p-4 transform transition-transform duration-300 ease-in-out
-          md:translate-x-0 md:z-0 md:sticky md:top-0 md:h-screen md:overflow-y-auto
+          xl:translate-x-0 xl:z-0 xl:sticky xl:top-0 xl:h-screen xl:overflow-y-auto
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
       >
@@ -30,7 +30,7 @@ function Sidebar({isOpen, onCloseSidebar}: SidebarProps) {
           <h2 className="text-xl font-bold">{process.env.PUBLIC_SITE_NAME || "Site Title"}</h2>
           <button
             onClick={onCloseSidebar}
-            className="p-2 hover:bg-slate-800 rounded md:hidden cursor-pointer"
+            className="p-2 hover:bg-slate-800 rounded xl:hidden cursor-pointer"
             aria-label="Close sidebar"
           >X</button>
         </div>
